@@ -1,4 +1,4 @@
-(function (global) {
+(function (maychat) {
     var libs = new Array;
     var styles = new Array;
     var baseUrl = "http://localhost:3030/";

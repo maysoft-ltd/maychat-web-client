@@ -1,4 +1,4 @@
-(function (global) {
+(function (maychat) {
     const baseUrl = "http://localhost:3030/";
     const options = { transports: ['websocket'], pingTimeout: 3000, pingInterval: 5000 };
     const socket = io("http://chat.maysoft.io:3333/", options);
@@ -73,12 +73,12 @@
         try {
             showChat();
             const oldVisitorId = sessionStorage.getItem("maychat_visitor_id");
-            const visitorId = `${global.username}@${global.projectId}`;
+            const visitorId = `${maychat.username}@${maychat.projectId}`;
             if (oldVisitorId) {
                 visitor = await client.authenticate({
                     strategy: 'api-key',
-                    apiKey: global.apiKey,
-                    visitorName: global.username,
+                    apiKey: maychat.apiKey,
+                    visitorName: maychat.username,
                     visitorId,
                     _id: oldVisitorId
                 });
@@ -88,8 +88,8 @@
             } else {
                 visitor = await client.authenticate({
                     strategy: "api-key",
-                    apiKey: global.apiKey,
-                    visitorName: global.username,
+                    apiKey: maychat.apiKey,
+                    visitorName: maychat.username,
                     visitorId,
                 });
                 sessionStorage.setItem("maychat_visitor_id", visitor._id);
